@@ -4,6 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 @AGENTS.md
 
+## Always check `/docs` first
+
+Before generating any code, ALWAYS check the `/docs` directory for a relevant doc file covering the area you're about to touch (e.g. UI conventions, architecture decisions). If a relevant doc exists, follow it as the source of truth over training data or assumptions. If no relevant doc exists, proceed using the other guidance in this file.
+
+- /docs/ui.md
+
 ## Next.js 16 — do not rely on training data
 
 This project uses **Next.js 16.2.10** with React 19.2.4 and the App Router. Next.js 16 has breaking changes and new conventions vs. earlier versions your training data likely reflects. Before writing routing, data-fetching, caching, or config code, check `node_modules/next/dist/docs/` (mirrors nextjs.org/docs), especially:
