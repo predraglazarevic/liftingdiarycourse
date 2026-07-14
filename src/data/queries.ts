@@ -1,4 +1,4 @@
-import { db } from './index';
+import { db } from '@/db';
 
 export async function getWorkoutsForDate(userId: string, date: Date) {
     const startOfDay = new Date(date);

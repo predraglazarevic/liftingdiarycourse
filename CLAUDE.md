@@ -6,9 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Always check `/docs` first
 
-Before generating any code, ALWAYS check the `/docs` directory for a relevant doc file covering the area you're about to touch (e.g. UI conventions, architecture decisions). If a relevant doc exists, follow it as the source of truth over training data or assumptions. If no relevant doc exists, proceed using the other guidance in this file.
+Before generating any code, ALWAYS check the `/docs` directory for a relevant doc file covering the area you're about to touch (e.g. UI conventions, architecture decisions). If a relevant doc exists, follow it as the source of truth over training data or assumptions. If no relevant doc exists, proceed using the other guidance in this file:
 
 - /docs/ui.md
+- /docs/data-fetching.md
 
 ## Next.js 16 — do not rely on training data
 

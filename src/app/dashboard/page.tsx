@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 import { format } from "date-fns"
 
-import { getWorkoutsForDate } from "@/db/queries"
+import { getWorkoutsForDate } from "@/data/queries"
 import { DashboardDatePicker } from "./date-picker"
 import {
   Card,

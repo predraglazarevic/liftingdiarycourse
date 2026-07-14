@@ -21,6 +21,7 @@ export function DashboardDatePicker({ selected }: { selected: Date }) {
       onSelect={(date) => {
         if (!date) return
         router.push(`/dashboard?date=${toDateKey(date)}`)
+        router.refresh()
       }}
     />
   )
