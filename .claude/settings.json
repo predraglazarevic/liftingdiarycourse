@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "agent",
+            "if": "Write(docs/*.md)",
+            "prompt": "A documentation file was just written to the docs/ directory (details: $ARGUMENTS). Read and follow the instructions in .claude/agents/doc-index-updater.md to update CLAUDE.md's documentation file list so it includes this new file.",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
