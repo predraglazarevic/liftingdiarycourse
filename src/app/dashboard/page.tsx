@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
+import Link from "next/link"
 import { format } from "date-fns"
 
 import { getWorkoutsForDate } from "@/data/queries"
@@ -50,39 +51,45 @@ export default async function DashboardPage({
         ) : (
           <div className="flex flex-1 flex-col gap-4">
             {workouts.map((workout) => (
-              <Card key={workout.id}>
-                <CardHeader>
-                  <CardTitle>{workout.name ?? "Workout"}</CardTitle>
-                  {workout.started_at && (
-                    <CardDescription>
-                      {format(workout.started_at, "do MMM yyyy")}
-                    </CardDescription>
-                  )}
-                </CardHeader>
+              <Link
+                key={workout.id}
+                href={`/dashboard/workout/${workout.id}`}
+                className="block"
+              >
+                <Card className="transition-colors hover:bg-accent/50">
+                  <CardHeader>
+                    <CardTitle>{workout.name ?? "Workout"}</CardTitle>
+                    {workout.started_at && (
+                      <CardDescription>
+                        {format(workout.started_at, "do MMM yyyy")}
+                      </CardDescription>
+                    )}
+                  </CardHeader>
 
-                <CardContent>
-                  {workout.workout_exercises.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">No exercises logged.</p>
-                  ) : (
-                    <ul className="flex flex-col gap-2">
-                      {workout.workout_exercises.map((we) => (
-                        <li key={we.id} className="flex flex-col gap-1">
-                          <span className="text-sm font-medium">{we.exercise?.name}</span>
-                          <ul className="flex flex-wrap gap-2">
-                            {we.sets.map((set) => (
-                              <li key={set.id}>
-                                <Badge variant="secondary">
-                                  {set.weight ?? "-"} x {set.reps ?? "-"}
-                                </Badge>
-                              </li>
-                            ))}
-                          </ul>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </CardContent>
-              </Card>
+                  <CardContent>
+                    {workout.workout_exercises.length === 0 ? (
+                      <p className="text-sm text-muted-foreground">No exercises logged.</p>
+                    ) : (
+                      <ul className="flex flex-col gap-2">
+                        {workout.workout_exercises.map((we) => (
+                          <li key={we.id} className="flex flex-col gap-1">
+                            <span className="text-sm font-medium">{we.exercise?.name}</span>
+                            <ul className="flex flex-wrap gap-2">
+                              {we.sets.map((set) => (
+                                <li key={set.id}>
+                                  <Badge variant="secondary">
+                                    {set.weight ?? "-"} x {set.reps ?? "-"}
+                                  </Badge>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         )}
