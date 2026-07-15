@@ -13,6 +13,7 @@ import {
   CardContent,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 function parseDateKey(dateKey: string | undefined) {
   if (dateKey && /^\d{4}-\d{2}-\d{2}$/.test(dateKey)) {
@@ -37,15 +38,17 @@ export default async function DashboardPage({
 
   return (
     <div className="mx-auto flex w-[70%] flex-1 flex-col gap-6 p-6 sm:p-10">
-      <h1 className="text-2xl font-semibold">Dashboard</h1>
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-2xl font-semibold">Dashboard</h1>
+        <div className="flex items-center gap-2">
+          <Button asChild>
+            <Link href="/dashboard/workout/new">Log New Workout</Link>
+          </Button>
+          <DashboardDatePicker selected={selectedDate} />
+        </div>
+      </div>
 
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
-        <Card className="w-fit">
-          <CardContent>
-            <DashboardDatePicker selected={selectedDate} />
-          </CardContent>
-        </Card>
-
+      <div className="flex flex-col gap-6">
         {workouts.length === 0 ? (
           <p className="text-muted-foreground">No workouts logged for this date.</p>
         ) : (
